@@ -221,8 +221,6 @@ public class ExamQuestionBuilder
 			{
 				throw new IllegalArgumentException(String.format("Unexpected value: %d", questionIndex));
 			}
-
-			
 		}
 
 		for (count = 0; count < optionStrings.length; count++)

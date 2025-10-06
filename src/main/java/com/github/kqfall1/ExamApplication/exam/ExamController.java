@@ -7,7 +7,7 @@ up to the title. */
 package com.github.kqfall1.ExamApplication.exam;
 
 import com.github.kqfall1.kqfall1JavaEnums.YesNoInput;
-import com.github.kqfall1.kqfall1JavaUtils.JOptionPaneOutput;
+import com.github.kqfall1.kqfall1JavaUtils.JOptionPaneHandler;
 import javax.swing.JOptionPane;
 
 public class ExamController
@@ -19,9 +19,9 @@ public class ExamController
 		String correctOptionString;
 		Exam exam;
 
-		while (JOptionPaneOutput.promptForYesNoInput("Would you like to be tested (Y/N)?").equals(YesNoInput.YES))
+		//while (JOptionPaneOutput.promptForYesNoInput("Would you like to be tested (Y/N)?").equals(YesNoInput.YES))
 		{
-			exam = Exam.createTest(JOptionPaneOutput.promptForValidInteger(
+			exam = Exam.createTest(JOptionPaneHandler.promptForValidInteger(
 				String.format("How many questions would you like on your new test (%d - %d)?",
 					1,
 					ExamQuestionBuilder.NUMBER_OF_UNIQUE_QUESTIONS),
@@ -32,7 +32,7 @@ public class ExamController
 			while (exam.isActive())
 			{
 				correctOptionString = exam.getCurrentQuestionCorrectOptionString();
-				answerIsCorrect = exam.submitAnswer(JOptionPaneOutput.promptForValidInteger(
+				answerIsCorrect = exam.submitAnswer(JOptionPaneHandler.promptForValidInteger(
 					exam.getCurrentQuestionString(),
 					1,
 					exam.getCurrentQuestionNumberOfOptions()
