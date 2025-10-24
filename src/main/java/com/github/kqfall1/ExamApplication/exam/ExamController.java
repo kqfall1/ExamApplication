@@ -6,8 +6,10 @@ up to the title. */
 
 package com.github.kqfall1.ExamApplication.exam;
 
-import com.github.kqfall1.kqfall1JavaEnums.YesNoInput;
-import com.github.kqfall1.kqfall1JavaUtils.JOptionPaneHandler;
+import com.github.kqfall1.enums.YesNoInput;
+import com.github.kqfall1.handlers.InputHandler;
+import com.github.kqfall1.handlers.JOptionPaneHandler;
+
 import javax.swing.JOptionPane;
 
 public class ExamController
@@ -18,10 +20,12 @@ public class ExamController
 		String answerMessage;
 		String correctOptionString;
 		Exam exam;
+		JOptionPaneHandler jOptionPaneHandler = new JOptionPaneHandler();
+		InputHandler handler = new InputHandler(jOptionPaneHandler, jOptionPaneHandler, jOptionPaneHandler);
 
-		//while (JOptionPaneOutput.promptForYesNoInput("Would you like to be tested (Y/N)?").equals(YesNoInput.YES))
+		while (handler.promptForYesNo("Would you like to be tested (Y/N)?").equals(YesNoInput.YES))
 		{
-			exam = Exam.createTest(JOptionPaneHandler.promptForValidInteger(
+			exam = Exam.createTest((int) handler.promptForNumber(
 				String.format("How many questions would you like on your new test (%d - %d)?",
 					1,
 					ExamQuestionBuilder.NUMBER_OF_UNIQUE_QUESTIONS),
@@ -32,7 +36,7 @@ public class ExamController
 			while (exam.isActive())
 			{
 				correctOptionString = exam.getCurrentQuestionCorrectOptionString();
-				answerIsCorrect = exam.submitAnswer(JOptionPaneHandler.promptForValidInteger(
+				answerIsCorrect = exam.submitAnswer((int) handler.promptForNumber(
 					exam.getCurrentQuestionString(),
 					1,
 					exam.getCurrentQuestionNumberOfOptions()
