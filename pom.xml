@@ -14,7 +14,7 @@
         <dependency>
             <groupId>com.github.kqfall1</groupId>
             <artifactId>kqfall1JavaUtils</artifactId>
-            <version>1.1.6</version>
+            <version>1.2.4</version>
         </dependency>
     </dependencies>
 
